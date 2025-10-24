@@ -5,27 +5,21 @@ import { store } from '@/store'
 import type { Horse } from '@/types'
 
 describe('HorseList', () => {
+  const mountComponent = () => mount(HorseList, { global: { plugins: [store] } })
+
   beforeEach(() => {
     store.commit('RESET_GAME')
   })
 
   it('renders the component', () => {
-    const wrapper = mount(HorseList, {
-      global: {
-        plugins: [store],
-      },
-    })
+    const wrapper = mountComponent()
 
     expect(wrapper.exists()).toBe(true)
     expect(wrapper.find('.horse-list__horse-table').exists()).toBe(true)
   })
 
   it('displays table headers', () => {
-    const wrapper = mount(HorseList, {
-      global: {
-        plugins: [store],
-      },
-    })
+    const wrapper = mountComponent()
 
     const headers = wrapper.findAll('th')
     expect(headers.length).toBeGreaterThan(0)
@@ -41,11 +35,7 @@ describe('HorseList', () => {
     ]
     store.state.allHorses = mockHorses
 
-    const wrapper = mount(HorseList, {
-      global: {
-        plugins: [store],
-      },
-    })
+    const wrapper = mountComponent()
 
     expect(wrapper.text()).toContain('Thunder Bolt')
     expect(wrapper.text()).toContain('Lightning Speed')
@@ -61,11 +51,7 @@ describe('HorseList', () => {
     ]
     store.state.allHorses = mockHorses
 
-    const wrapper = mount(HorseList, {
-      global: {
-        plugins: [store],
-      },
-    })
+    const wrapper = mountComponent()
 
     expect(wrapper.text()).toContain('Horse List 1-3')
   })
@@ -80,11 +66,7 @@ describe('HorseList', () => {
     }
     store.state.allHorses = [mockHorse]
 
-    const wrapper = mount(HorseList, {
-      global: {
-        plugins: [store],
-      },
-    })
+    const wrapper = mountComponent()
 
     expect(wrapper.text()).toContain('Red')
     const colorBox = wrapper.find('.horse-list__color-box')
@@ -94,11 +76,7 @@ describe('HorseList', () => {
   it('renders all 20 horses when initialized', () => {
     store.commit('INITIALIZE_HORSES')
 
-    const wrapper = mount(HorseList, {
-      global: {
-        plugins: [store],
-      },
-    })
+    const wrapper = mountComponent()
 
     const rows = wrapper.findAll('tbody tr')
     expect(rows.length).toBe(20)
