@@ -47,7 +47,7 @@ import './styles/main.scss'
 }
 
 .sidebar {
-  overflow: hidden;
+  overflow-y: auto;
 
   &.left {
     min-width: $sidebar-left-width;
@@ -55,11 +55,12 @@ import './styles/main.scss'
 
   &.right {
     min-width: $sidebar-right-width;
+    overflow: hidden;
   }
 }
 
 .track-area {
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .right-panels {
@@ -90,31 +91,39 @@ import './styles/main.scss'
 }
 
 @media (max-width: $breakpoint-lg) {
+  .app-container {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .main-content {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    overflow-y: auto;
+    grid-template-rows: auto auto auto;
+    overflow-y: visible;
+    overflow: visible;
   }
 
   .sidebar {
     &.left,
     &.right {
       min-width: unset;
-      max-height: 300px;
-      overflow-y: auto;
+      max-height: none;
+      overflow: visible;
+      height: auto;
     }
   }
 
   .track-area {
-    min-height: 500px;
-    overflow-y: auto;
+    min-height: 400px;
+    height: auto;
+    overflow: visible;
   }
 
   .right-panels {
-    grid-template-rows: auto auto;
-    grid-template-columns: 1fr 1fr;
-    gap: $spacing-sm;
-    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    height: auto;
   }
 }
 </style>

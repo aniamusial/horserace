@@ -43,6 +43,8 @@ const emit = defineEmits<{
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
 
   &::before {
     content: '';

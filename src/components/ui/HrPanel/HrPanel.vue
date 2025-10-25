@@ -37,6 +37,7 @@ withDefaults(defineProps<Props>(), {
   height: 100%;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 
   &__header {
     padding: $spacing-md;
@@ -48,12 +49,14 @@ withDefaults(defineProps<Props>(), {
     font-size: $font-size-xl;
     font-weight: $font-weight-semibold;
     color: $white;
+    word-break: break-word;
   }
 
   &__content {
     flex: 1;
     overflow-y: auto;
     padding: $spacing-md;
+    min-width: 0;
   }
 
   &__placeholder {
@@ -68,6 +71,11 @@ withDefaults(defineProps<Props>(), {
     p {
       margin: 0;
     }
+  }
+
+  @media (max-width: 1024px) {
+    height: auto;
+    min-height: 300px;
   }
 }
 </style>

@@ -63,6 +63,8 @@ const ariaLabelText = computed(() => {
   align-items: center;
   padding: $spacing-md $spacing-xl;
   background: $primary;
+  flex-wrap: wrap;
+  gap: $spacing-md;
 
   &__title {
     margin: 0;
@@ -74,6 +76,21 @@ const ariaLabelText = computed(() => {
   &__buttons {
     display: flex;
     gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    flex-direction: column;
+    align-items: stretch;
+
+    &__title {
+      text-align: center;
+      font-size: $font-size-xl;
+    }
+
+    &__buttons {
+      justify-content: center;
+    }
   }
 }
 </style>
